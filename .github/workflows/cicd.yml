@@ -20,7 +20,7 @@ jobs:
       - name: Sign in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
-        run: docker build -t cmgyeong/camping-front .
+        run: docker build --no-cache -t cmgyeong/camping-front .
       - name: Push Docker Image
         run: docker push cmgyeong/camping-front:latest
 
