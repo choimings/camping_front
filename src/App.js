@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  console.log('test2');
+  console.log('test');
   return (
     <BrowserRouter>
       <div className="App">
