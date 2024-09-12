@@ -1,5 +1,13 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 
+const loadGoogleMapsApi = (apiKey, callback) => {
+  // Google Maps API 스크립트를 동적으로 로드
+  const script = document.createElement('script');
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=${callback}`;
+  script.async = true;
+  document.head.appendChild(script);
+};
+
 const MapPenel = ({ center, zoom, regionData }) => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
@@ -29,7 +37,6 @@ const MapPenel = ({ center, zoom, regionData }) => {
 
         // 마커 클릭 이벤트로 팝업 표시
         const infoWindow = new window.google.maps.InfoWindow({
-          // css에 스타일 추가
           content: `
             <div class="custom-info-window">
               <h3>${item.facltNm}</h3>
@@ -48,9 +55,22 @@ const MapPenel = ({ center, zoom, regionData }) => {
   }, []);
 
   useEffect(() => {
+    // 환경 변수에서 Google Maps API 키를 가져옴
+    const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAP_API;
+
     if (!mapInstanceRef.current) {
-      initMap();
+      // Google Maps API 키를 사용하여 스크립트를 동적으로 로드
+      loadGoogleMapsApi(googleMapsApiKey, 'initMap');
+
+      // 전역으로 정의된 콜백을 호출하여 지도를 초기화
+      window.initMap = () => {
+        initMap();
+        if (regionData && regionData.length > 0) {
+          addMarkers(regionData);
+        }
+      };
     } else {
+      // 맵이 이미 있으면, 센터와 줌을 업데이트
       mapInstanceRef.current.setCenter(center);
       mapInstanceRef.current.setZoom(zoom);
     }
