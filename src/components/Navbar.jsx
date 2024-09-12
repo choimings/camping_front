@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { GiCampingTent } from "react-icons/gi";
-import { navMenus } from "../utils/data";
-import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
-import { FaTree } from "react-icons/fa6";
-import { useDispatch, useSelector } from "react-redux";
-import { login, logout } from "../redux/slices/authSlice";
-import { jwtDecode } from "jwt-decode";
+import React, { useCallback, useEffect, useState } from 'react';
+import { GiCampingTent } from 'react-icons/gi';
+import { navMenus } from '../utils/data';
+import { Link } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout } from '../redux/slices/authSlice';
+import { jwtDecode } from 'jwt-decode';
 
 const Navbar = ({ menuIdx }) => {
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ const Navbar = ({ menuIdx }) => {
   });
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("authData"));
+    const storedData = JSON.parse(localStorage.getItem('authData'));
     if (storedData) {
       dispatch(login({ authData: storedData }));
       setIsAuth(true);
@@ -36,7 +35,7 @@ const Navbar = ({ menuIdx }) => {
         callback: handleLoginSucess,
       });
     } else {
-      console.log("Google object is not available");
+      console.log('Google object is not available');
     }
   }, [googleClientId, handleLoginSucess]);
 
@@ -45,7 +44,7 @@ const Navbar = ({ menuIdx }) => {
   };
 
   const handleLogoutClick = () => {
-    localStorage.removeItem("authData");
+    localStorage.removeItem('authData');
     dispatch(logout());
     setIsAuth(false);
   };
@@ -58,10 +57,10 @@ const Navbar = ({ menuIdx }) => {
             <li
               key={idx}
               className={`${
-                menu.idx === menuIdx ? "bg-white" : ""
+                menu.idx === menuIdx ? 'bg-white' : ''
               } px-5 py-2 bg-white
                hover:bg-cyan-100 rounded-md`}
-              style={{ minWidth: "160px" }}
+              style={{ minWidth: '160px' }}
             >
               <Link to={menu.to} className="flex gap-x-4 items-center">
                 {menu.icon}
@@ -80,7 +79,7 @@ const Navbar = ({ menuIdx }) => {
          "
           >
             <Link
-              to={"/"}
+              to={'/'}
               className="test2 text-md text-cyan-400 drop-shadow-sm"
             >
               Camping Guide
