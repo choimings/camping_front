@@ -22,7 +22,7 @@
 
 정민석
 
-- github address :
+- github address : https://github.com/Jeongminseok-web
 - role : backend, database
 
 ## 프로젝트 소개
