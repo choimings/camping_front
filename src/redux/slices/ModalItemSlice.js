@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const modalItemSlice = createSlice({
-  name: "modalItem",
+  name: 'modalItem',
   initialState: {
     isOpen: false,
-    modalItemType: "create",
+    modalItemType: 'create',
     task: null,
   },
   reducers: {

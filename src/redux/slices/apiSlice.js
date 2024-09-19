@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   GET_AREAS_API_URL,
   POST_AREAS_API_URL,
@@ -7,13 +7,13 @@ import {
   GET_TASKS_API_URL,
   POST_TASKS_API_URL,
   UPDATE_TASK_API_URL,
-} from "../../utils/apiUrl";
+} from '../../utils/apiUrl';
 import {
   deleteRequest,
   getRequest,
   patchRequest,
   postRequest,
-} from "../../utils/requestMethods";
+} from '../../utils/requestMethods';
 
 const getItemsFetchThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async (userId) => {
@@ -35,9 +35,9 @@ const postItemFetchThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async (postData) => {
     // console.log(postData);
     const options = {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(postData), // 표준 json 문자열로 변환
     };
@@ -49,9 +49,9 @@ const postTaskFetchThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async (postData) => {
     // console.log(postData);
     const options = {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(postData), // 표준 json 문자열로 변환
     };
@@ -63,7 +63,7 @@ const deleteItemFetchThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async (id) => {
     // console.log(postData);
     const options = {
-      method: "DELETE",
+      method: 'DELETE',
     };
     const fullPath = `${apiURL}/${id}`;
     await deleteRequest(fullPath, options);
@@ -75,7 +75,7 @@ const deleteTaskFetchThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async (id) => {
     // console.log(postData);
     const options = {
-      method: "DELETE",
+      method: 'DELETE',
     };
     const fullPath = `${apiURL}/${id}`;
     await deleteRequest(fullPath, options);
@@ -101,42 +101,42 @@ const updateCompletedFetchThunk = (actionType, apiURL) => {
 };
 
 export const fetchGetItemsData = getItemsFetchThunk(
-  "fetchGetItems",
+  'fetchGetItems',
   GET_AREAS_API_URL
 );
 
 export const fetchGetTasksData = getTasksFetchThunk(
-  "fetchGetTasks",
+  'fetchGetTasks',
   GET_TASKS_API_URL
 );
 
 export const fetchPostItemData = postItemFetchThunk(
-  "fetchPostItem",
+  'fetchPostItem',
   POST_AREAS_API_URL
 );
 
 export const fetchPostTaskData = postTaskFetchThunk(
-  "fetchPostTask",
+  'fetchPostTask',
   POST_TASKS_API_URL
 );
 
 export const fetchDeleteItemData = deleteItemFetchThunk(
-  "fetchDeleteItem",
+  'fetchDeleteItem',
   DELETE_AREAS_API_URL
 );
 
 export const fetchDeleteTaskData = deleteTaskFetchThunk(
-  "fetchDeleteTask",
+  'fetchDeleteTask',
   DELETE_AREAS_API_URL
 );
 
 export const fetchPutTaskData = updateTaskFetchThunk(
-  "fetchPutTask",
+  'fetchPutTask',
   UPDATE_TASK_API_URL
 );
 
 export const fetchUpdateCompletedData = updateCompletedFetchThunk(
-  "fetchUpdateCompleted",
+  'fetchUpdateCompleted',
   UPDATE_COMPLETED_TASKS_URL
 );
 
@@ -150,12 +150,12 @@ const handleRejected = (state, action) => {
 };
 
 const apiSlice = createSlice({
-  name: "api",
+  name: 'api',
   initialState: {
     getItemData: [],
     postItemData: null,
     deleteItemData: null,
-    getTaskData: [],
+    getTasksData: [],
     postTasksData: null,
     deleteTaskData: null,
     updateCompletedData: null,
@@ -165,31 +165,31 @@ const apiSlice = createSlice({
   extraReducers: (builder) => {
     builder
       // 캠핑장 apiSlice
-      .addCase(fetchGetItemsData.fulfilled, handleFullfilled("getItemsData"))
+      .addCase(fetchGetItemsData.fulfilled, handleFullfilled('getItemsData'))
       .addCase(fetchGetItemsData.rejected, handleRejected)
-      .addCase(fetchPostItemData.fulfilled, handleFullfilled("postItemData"))
+      .addCase(fetchPostItemData.fulfilled, handleFullfilled('postItemData'))
       .addCase(fetchPostItemData.rejected, handleRejected)
       .addCase(
         fetchDeleteItemData.fulfilled,
-        handleFullfilled("deleteItemData")
+        handleFullfilled('deleteItemData')
       )
       .addCase(fetchDeleteItemData.rejected, handleRejected)
       //  리뷰 apiSlice
-      .addCase(fetchGetTasksData.fulfilled, handleFullfilled("getTasksData"))
+      .addCase(fetchGetTasksData.fulfilled, handleFullfilled('getTasksData'))
       .addCase(fetchGetTasksData.rejected, handleRejected)
-      .addCase(fetchPostTaskData.fulfilled, handleFullfilled("postTaskData"))
+      .addCase(fetchPostTaskData.fulfilled, handleFullfilled('postTaskData'))
       .addCase(fetchPostTaskData.rejected, handleRejected)
       .addCase(
         fetchDeleteTaskData.fulfilled,
-        handleFullfilled("deleteTaskData")
+        handleFullfilled('deleteTaskData')
       )
       .addCase(fetchDeleteTaskData.rejected, handleRejected)
       .addCase(
         fetchUpdateCompletedData.fulfilled,
-        handleFullfilled("updateCompletedData")
+        handleFullfilled('updateCompletedData')
       )
       .addCase(fetchUpdateCompletedData.rejected, handleRejected)
-      .addCase(fetchPutTaskData.fulfilled, handleFullfilled("updatePutData"))
+      .addCase(fetchPutTaskData.fulfilled, handleFullfilled('updatePutData'))
       .addCase(fetchPutTaskData.rejected, handleRejected);
   },
 });

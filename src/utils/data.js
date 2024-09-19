@@ -26,6 +26,12 @@ export const navMenus = [
     icon: <RiDoorOpenFill className="w-5 h-5" />,
     idx: 4,
   },
+  {
+    label: 'Review',
+    to: '/review',
+    icon: <TbStarsFilled className="w-5 h-5" />,
+    idx: 4,
+  },
 ];
 
 export const themenavbar = [
