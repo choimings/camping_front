@@ -79,13 +79,10 @@ const ReviewModal = ({ closeModal, addReview }) => {
       console.log(...formData);
 
       try {
-        const response = await fetch(
-          'https://campingback.cmehapdls.com/post_tasks',
-          {
-            method: 'POST',
-            body: formData,
-          }
-        );
+        const response = await fetch('http://localhost:8000/post_tasks', {
+          method: 'POST',
+          body: formData,
+        });
 
         // console.log(formData);
 
