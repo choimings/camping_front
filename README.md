@@ -11,7 +11,7 @@
 
 ## 배포 주소
 
-> **프론트 서버** : [https://campingfront.cmehapdls.com](https://campingfront.cmehapdls.com)<br> **백엔드 서버** : [https://campingback.cmehapdls.com](https://campingfront.cmehapdls.com)
+> **프론트 서버** : [https://campingfront.cmehapdls.com](https://campingfront.cmehapdls.com)<br> **백엔드 서버** : [https://campingback.cmehapdls.com](https://campingback.cmehapdls.com)
 
 ## 개발 팀 소개
 
