@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   IoMdAdd,
   IoMdCloseCircle,
   IoMdCreate,
   IoMdRemoveCircle,
-} from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchPutTaskData } from "../../redux/slices/apiSlice";
+} from 'react-icons/io';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPutTaskData } from '../../redux/slices/apiSlice';
 
 const ReviewItem = ({ task, closeModal }) => {
   const { images, title, description, date, grade, _id, userid } = task;
@@ -17,9 +17,9 @@ const ReviewItem = ({ task, closeModal }) => {
   const userName = useSelector((state) => state.auth.authData?.name);
   const dispatch = useDispatch();
 
-  const defaultImage = process.env.PUBLIC_URL + "/campimg.png";
+  const defaultImage = process.env.PUBLIC_URL + '/campimg.png';
   // 서버의 이미지 URL 기본 경로 설정
-  const BASE_IMAGE_URL = "http://localhost:8000";
+  const BASE_IMAGE_URL = 'https://campingback.cmehapdls.com';
   // 서버 이미지 URL 설정
   const imageUrl = (imagePath) => `${BASE_IMAGE_URL}${imagePath}`;
 
@@ -30,30 +30,30 @@ const ReviewItem = ({ task, closeModal }) => {
   const handleDeleteClick = async () => {
     if (userKey === userid) {
       // images 배열에서 UUID를 가져옵니다.
-      const imageNames = images.map((image) => image.split("/").pop());
+      const imageNames = images.map((image) => image.split('/').pop());
       console.log(images);
       console.log(imageNames);
 
       try {
         const response = await fetch(
-          `http://localhost:8000/delete_task/${_id}`,
+          `https://campingback.cmehapdls.com/delete_task/${_id}`,
           {
-            method: "DELETE",
+            method: 'DELETE',
             headers: {
-              "Content-Type": "application/json",
+              'Content-Type': 'application/json',
             },
             body: JSON.stringify({ images: imageNames }), // 삭제할 이미지 이름 전달
           }
         );
 
         if (response.ok) {
-          console.log("Task deleted successfully");
+          console.log('Task deleted successfully');
           closeReview();
         } else {
-          console.error("Failed to delete task");
+          console.error('Failed to delete task');
         }
       } catch (error) {
-        console.error("Error while deleting task:", error);
+        console.error('Error while deleting task:', error);
       }
     }
   };
