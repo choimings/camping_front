@@ -148,3 +148,69 @@ $ npm start
 <img width="329" alt="image" src="https://github.com/user-attachments/assets/19e24418-89f1-487e-854e-1e11a48c75f0">
 
 </div>
+
+## error test and fixed
+
+### 1. 로그아웃 후 재로그인이 안되는 에러
+
+- 해결 방법 1 : 로그아웃 시 localStorage에 저장된 사용자 데이터 제거
+
+```
+const handleLogoutClick = () => {
+  localStorage.removeItem('authData');
+  dispatch(logout());
+  setIsAuth(false);
+};
+```
+
+- 해결 방법 2: 로그아웃 후 Google Sign-in 재초기화
+
+```
+useEffect(() => {
+  if (window.google && !isAuth) {
+    window.google.accounts.id.initialize({
+      client_id: googleClientId,
+      callback: handleLoginSucess,
+    });
+  }
+}, [googleClientId, handleLoginSucess, isAuth]);
+```
+
+### 2. 방문한 캠핑장 삭제 시 새로고침없이 변경 안 됨
+
+- 해결 방법: onRemove를 사용하여 local Storage 상태를 바로 업데이트하여 UI 상에 표시하도록 설정
+
+```
+<Item key={area.id} area={area} onRemove={handleItemRemove} />
+
+const handleItemRemove = (name) => {
+     const updateAreas = localAreas.filter((area) => area.name !== name);
+     setLocalAreas(updateAreas);
+};
+```
+
+### 3. 지도에서 지역 클릭 시 모달창에 캠핑장이 두 번 랜더링 됨
+
+- 해결 방법: useCallback을 사용하여 리랜더링하지 않도록, useEffect를 사용하여 선택한 지역의 캠핑장만 배열로 설정
+
+```
+const fetchData = useCallback(async () => {
+  try{
+    const reponse = await fetch(
+      "http://api주소"
+    );
+    const result = await reponse.json();
+    setData(result.response.body.items.item);
+  } catch(error){
+    console.error("Error fetching data:", error);
+  }
+}, []);
+
+useEffect(()=>{
+  fetchData();
+}, [fetchData]);
+
+useEffect(() => {
+  console.log("Selected Campings Updated:", seletedCampings);
+}, [selectedCampings]);
+```
