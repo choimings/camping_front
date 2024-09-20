@@ -48,6 +48,11 @@ AICC 수업 내용으로서, html, css, javascript 학습을 토대로 react.js�
 
 - visited 페이지에 관심이 있거나 방문했던 캠핑장을 저장할 수 있습니다. (구글 로그인 필수)
 
+### ⭐️ 캠핑장 리뷰 작성 (추가 개발 사항)
+
+- review 페이지의 + 버튼을 이용하여 방문했던 캠핑장에 대한 별점, 후기, 날짜를 기록할 수 있습니다.
+- 구글 로그인을 필수로 하지만 작성된 리뷰는 로그인 없이도 열람할 수 있습니다.
+
 ---
 
 #### You can check the locations of various campsites.
@@ -117,6 +122,8 @@ $ npm start
 | <img width="329" src="https://github.com/user-attachments/assets/56a68da3-39f3-4592-b541-77bd47e0cc63"/> | <img width="329" src="https://github.com/user-attachments/assets/4e10ae01-b00e-4fff-bd94-6e909ef5040e"/> |
 |                                          방문 페이지(로그인 O)                                           |                                          방문 페이지(로그인 X)                                           |
 | <img width="329" src="https://github.com/user-attachments/assets/19668b6a-93a3-4cb8-ad7b-f5f7db7c1c75"/> | <img width="329" src="https://github.com/user-attachments/assets/9b5c342f-2915-4058-a810-ddfd5f60a967"/> |
+|                                       리뷰 페이지(추가 개발 사항)                                        |                                          리뷰 페이지(리뷰 작성)                                          |
+| <img width="329" src="https://github.com/user-attachments/assets/8ddc90bb-74eb-4d48-904a-72e3413173e6"/> | <img width="329" src="https://github.com/user-attachments/assets/5e94083e-bbca-44ef-bfd5-7f99c5ec38af"/> |
 
 ## flowchart
 
