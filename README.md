@@ -67,6 +67,7 @@ Through this camping location information website, you can access information ab
 2. Campsite locations by theme
 3. Top 20 most popular campsites
 4. Save campsites you've visited or are interested in
+5. Camping Site Review (Additional Development Features)
 
 ## 시작 가이드
 
