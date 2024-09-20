@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import ReviewItem from "./ReviewItem";
-import ReviewModal from "./ReviewModal";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchGetTasksData } from "../../redux/slices/apiSlice";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from 'react';
+import ReviewItem from './ReviewItem';
+import ReviewModal from './ReviewModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchGetTasksData } from '../../redux/slices/apiSlice';
+import { toast } from 'react-toastify';
 
 const ReviewPanel = () => {
   const tasks = useSelector((state) => state.api.getTasksData);
@@ -24,7 +24,7 @@ const ReviewPanel = () => {
     if (userKey) {
       setIsModalOpen(true);
     } else {
-      toast.error("로그인이 필요합니다."); // Show error toast
+      toast.error('로그인이 필요합니다.'); // Show error toast
     }
   };
   const closeModal = () => setIsModalOpen(false);
@@ -83,7 +83,7 @@ const ReviewPanel = () => {
             key={task._id} // Assuming _id is the unique identifier
             reviews={reviews}
             task={task}
-            imageUrl={`http://localhost:8000/uploads/${task.image}`}
+            imageUrl={`https://campingback.cmehapdls.com/uploads/${task.image}`}
             closeModal={closeModal}
           />
         ))}
@@ -111,8 +111,8 @@ const ReviewPanel = () => {
                 href="#"
                 className={`flex items-center justify-center px-4 h-10 leading-tight border rounded-md ml-2 ${
                   currentPage === 1
-                    ? "cursor-not-allowed text-gray-400"
-                    : "text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                    ? 'cursor-not-allowed text-gray-400'
+                    : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700'
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -144,8 +144,8 @@ const ReviewPanel = () => {
                   href="#"
                   className={`flex items-center justify-center px-4 h-10 leading-tight border rounded-md ml-2 ${
                     number === currentPage
-                      ? "text-cyan-500 border border-cyan-300 bg-cyan-50"
-                      : "text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                      ? 'text-cyan-500 border border-cyan-300 bg-cyan-50'
+                      : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700'
                   }`}
                   onClick={(e) => {
                     e.preventDefault();
@@ -162,8 +162,8 @@ const ReviewPanel = () => {
                 href="#"
                 className={`flex items-center justify-center px-4 h-10 leading-tight border rounded-md ml-2 ${
                   currentPage === totalPages
-                    ? "cursor-not-allowed text-gray-400"
-                    : "text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                    ? 'cursor-not-allowed text-gray-400'
+                    : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700'
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
