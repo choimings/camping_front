@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux"; // useSelector를 Redux에서 가져옴
-import { IoMdCloseCircle } from "react-icons/io"; // 닫기 아이콘
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux'; // useSelector를 Redux에서 가져옴
+import { IoMdCloseCircle } from 'react-icons/io'; // 닫기 아이콘
 
 const ReviewModal = ({ closeModal, addReview }) => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [grade, setGrade] = useState(0);
-  const [date, setDate] = useState("");
-  const [description, setDescription] = useState("");
+  const [date, setDate] = useState('');
+  const [description, setDescription] = useState('');
   const [images, setImages] = useState([]);
   const [featuredImage, setFeaturedImage] = useState(null);
 
@@ -17,19 +17,19 @@ const ReviewModal = ({ closeModal, addReview }) => {
     const files = Array.from(event.target.files);
 
     if (files.length + images.length > 5) {
-      alert("최대 5장까지 업로드할 수 있습니다.");
+      alert('최대 5장까지 업로드할 수 있습니다.');
       return;
     }
 
-    // const newImages = files.map((file) => URL.createObjectURL(file));
-    setImages((prevImages) => [...prevImages, ...files]);
+    const newImages = files.map((file) => URL.createObjectURL(file));
+    setImages((prevImages) => [...prevImages, ...newImages]);
 
-    console.log(images);
+    // console.log(images);
 
     // 첫 번째 이미지를 기본 대표 사진으로 설정
 
-    if (!featuredImage && files.length > 0) {
-      setFeaturedImage(files[0]);
+    if (!featuredImage && newImages.length > 0) {
+      setFeaturedImage(newImages[0]);
     }
   };
 
@@ -57,21 +57,21 @@ const ReviewModal = ({ closeModal, addReview }) => {
     if (title && grade && googleId) {
       const formData = new FormData();
       console.log(title, grade, googleId);
-      formData.append("title", title);
-      formData.append("grade", grade);
-      formData.append("date", date);
-      formData.append("description", description);
-      formData.append("userId", googleId);
-      formData.append("userName", userName);
+      formData.append('title', title);
+      formData.append('grade', grade);
+      formData.append('date', date);
+      formData.append('description', description);
+      formData.append('userId', googleId);
+      formData.append('userName', userName);
 
       // Add images to FormData
       images.forEach((file) => {
-        formData.append("images", file);
+        formData.append('images', file);
       });
 
       try {
-        const response = await fetch("http://localhost:8000/post_tasks", {
-          method: "POST",
+        const response = await fetch('http://localhost:8000/post_tasks', {
+          method: 'POST',
           body: formData,
         });
 
@@ -79,7 +79,7 @@ const ReviewModal = ({ closeModal, addReview }) => {
 
         const result = await response.json();
         if (response.ok) {
-          console.log("Review successfully submitted:", result);
+          console.log('Review successfully submitted:', result);
           addReview({
             title,
             grade,
@@ -92,13 +92,13 @@ const ReviewModal = ({ closeModal, addReview }) => {
 
           closeModal();
         } else {
-          console.error("Failed to submit review:", result.error);
+          console.error('Failed to submit review:', result.error);
         }
       } catch (error) {
-        console.error("Error while submitting review:", error);
+        console.error('Error while submitting review:', error);
       }
     } else {
-      alert("제목과 별점, 구글 ID는 필수 항목입니다.");
+      alert('제목과 별점, 구글 ID는 필수 항목입니다.');
     }
   };
 
@@ -130,8 +130,8 @@ const ReviewModal = ({ closeModal, addReview }) => {
                   key={star}
                   onClick={() => setGrade(star)}
                   style={{
-                    cursor: "pointer",
-                    color: star <= grade ? "gold" : "gray",
+                    cursor: 'pointer',
+                    color: star <= grade ? 'gold' : 'gray',
                   }}
                   className="text-2xl"
                 >
@@ -207,10 +207,10 @@ const ReviewModal = ({ closeModal, addReview }) => {
                   type="button"
                   onClick={() => handleFeaturedImageChange(image)}
                   className={`absolute bottom-0 left-0 ${
-                    image === featuredImage ? "bg-cyan-500" : "bg-cyan-200"
+                    image === featuredImage ? 'bg-cyan-500' : 'bg-cyan-200'
                   } text-black p-1 rounded-full`}
                 >
-                  {image === featuredImage ? "대표 사진" : "대표로 설정"}
+                  {image === featuredImage ? '대표 사진' : '대표로 설정'}
                 </button>
               </div>
             ))}
